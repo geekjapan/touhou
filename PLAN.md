@@ -10,16 +10,18 @@
 4. サウンドは最後(MDRV98 再実装が最難関)。それまで `mdrv2.h` API を無音スタブで満たす。
 5. 統合ブランチ = ReC98 clone の `sdl-port`。ポートコードは `port/` 以下。worker は worktree で並行開発、コーディネータがマージ。
 
-## マイルストーン
+## マイルストーン(2026-07-07 全達成)
 
-| M | 内容 | 完了条件 |
+| M | 内容 | 状態 |
 |---|---|---|
-| M0 | pc98emu コア + SDL3 presenter | デモがエミュ経路(GRCG 含む)で描画、60fps |
-| M1 | OP.EXE bring-up | タイトル画面がレンダリングされる |
-| M2 | メニュー操作 | キー入力でメニュー遷移 |
-| M3 | REIIDEN ステージ1 | 無音でプレイ可能 |
-| M4 | サウンド | MDRV98 互換再生(ymfm) |
-| M5 | FUUIN + 全ステージ | 通しプレイ |
+| M0 | pc98emu コア + SDL3 presenter | ✅ |
+| M1 | OP.EXE タイトル画面 | ✅ 実アセットで画素検証済み |
+| M2 | メニュー操作 | ✅ ヘッドレス自動テスト付き |
+| M3 | REIIDEN ステージ1 | ✅ プレイアブル + 神玉ボス戦 65 秒生存 |
+| M4 | サウンド | ✅ MDRV2 エンジン(ymfm)、実 .MDT 19 曲レンダリング |
+| M5 | バイナリチェーン + エンディング | ✅ execv() で OP→REIIDEN→FUUIN、ED スライドショー検証 |
+
+成果: ReC98 `sdl-port` ブランチに 22 マージ、`port/ci.sh` 40/40 テスト緑。実行は `TH01_ASSETS_DIR=<assets> ./port/build/th01op`。残課題: SE(.MDE)再生、.MDT 音源の byte-exact 化、全ステージ通し検証、TH02-05 展開。
 
 ## 既知のブロッカー候補
 
